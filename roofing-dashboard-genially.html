@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Roofing Ecosystem 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F0F0F0;
+    --surface: #FFFFFF;
+    --surface2: #E5E5E5;
+    --border: rgba(0,63,108,0.12);
+    --text: #121212;
+    --muted: #6C6C6C;
+    --accent-blue: #0074D9;
+    --accent-amber: #00539B;
+    --accent-emerald: #0073E6;
+    --accent-rose: #003F6C;
+    --accent-indigo: #0099FF;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    overflow: auto;
+  }
+
+  .wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #003F6C 0%, #00539B 100%);
+    border: 1px solid rgba(0,63,108,0.2);
+    border-radius: 14px;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 300px; height: 100%;
+    background: radial-gradient(ellipse at top right, rgba(0,153,255,0.2) 0%, transparent 70%);
+  }
+  .header-title { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: #FFFFFF; }
+  .header-sub { color: rgba(255,255,255,0.65); font-size: 12px; margin-top: 3px; }
+  .badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #FFFFFF;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .kpi-card:hover { border-color: rgba(0,116,217,0.3); }
+  .kpi-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  }
+  .kpi-card.blue::after { background: #0074D9; }
+  .kpi-card.amber::after { background: #00539B; }
+  .kpi-card.indigo::after { background: #0099FF; }
+  .kpi-card.emerald::after { background: #0073E6; }
+
+  .kpi-label { font-size: 11px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi-value { font-size: 24px; font-weight: 700; margin-top: 6px; letter-spacing: -0.5px; font-family: 'DM Mono', monospace; color: #121212; }
+  .kpi-value.emerald { color: #121212; }
+  .kpi-sub { font-size: 11px; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+  .kpi-sub.green { color: #1a9e5c; }
+  .kpi-sub.rose { color: #c0392b; }
+  .kpi-sub.muted { color: var(--muted); }
+  .kpi-icon {
+    position: absolute; top: 14px; right: 14px;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+  .kpi-icon.blue { background: rgba(0,116,217,0.1); }
+  .kpi-icon.amber { background: rgba(0,83,155,0.1); }
+  .kpi-icon.indigo { background: rgba(0,153,255,0.1); }
+  .kpi-icon.emerald { background: rgba(0,115,230,0.1); }
+
+  /* MIDDLE GRID */
+  .mid-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    display: flex; align-items: center; gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 14px;
+  }
+  .card-title svg { opacity: 0.7; }
+
+  /* Market Segmentation */
+  .seg-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .seg-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+  .seg-name { font-size: 12px; font-weight: 600; color: var(--text); }
+  .seg-share { font-size: 13px; font-weight: 700; font-family: 'DM Mono', monospace; }
+  .seg-track { background: #E0E0E0; border-radius: 4px; height: 4px; overflow: hidden; margin-bottom: 5px; }
+  .seg-fill { height: 100%; border-radius: 4px; }
+  .seg-note { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* PESTEL grid */
+  .pestel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .pestel-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    transition: border-color 0.2s;
+  }
+  .pestel-item:hover { border-color: rgba(0,116,217,0.3); }
+  .pestel-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #00539B;
+    margin-bottom: 5px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .pestel-label span { font-size: 12px; }
+  .pestel-text { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  /* REGIONAL */
+  .region-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .region-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .region-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .region-card.rose::before { background: #003F6C; }
+  .region-card.blue::before { background: #0074D9; }
+  .region-card.emerald::before { background: #0073E6; }
+
+  .region-title {
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 10px;
+    color: #121212;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot.rose { background: #003F6C; }
+  .dot.blue { background: #0074D9; }
+  .dot.emerald { background: #0073E6; }
+
+  .region-item { font-size: 11px; color: var(--muted); margin-bottom: 7px; line-height: 1.4; }
+  .region-item strong { color: #121212; font-weight: 600; }
+
+  /* Arrows & icons inline */
+  .arrow-up::before { content: '↑ '; color: #1a9e5c; }
+  .arrow-warn::before { content: '⚠ '; color: #c0392b; font-size: 10px; }
+  .arrow-shield::before { content: '🛡 '; font-size: 10px; }
+
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .mid-grid { grid-template-columns: 1fr; }
+    .pestel-grid { grid-template-columns: repeat(2, 1fr); }
+    .region-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="header-title">Global Roofing Ecosystem</div>
+    </div>
+    <div class="badge">FY 2026</div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card blue">
+      <div class="kpi-icon blue">🌐</div>
+      <div class="kpi-label">Total Addressable Market</div>
+      <div class="kpi-value">$316.27B</div>
+      <div class="kpi-sub green"><span class="arrow-up"></span>3.4% CAGR to $366B+ (2030)</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-icon amber">☀️</div>
+      <div class="kpi-label">Solar Roofing Segment</div>
+      <div class="kpi-value">$8.90B</div>
+      <div class="kpi-sub green"><span class="arrow-up"></span>Hyper-growth @ 15% CAGR</div>
+    </div>
+    <div class="kpi-card indigo">
+      <div class="kpi-icon indigo">🏗️</div>
+      <div class="kpi-label">Roofing Materials Market</div>
+      <div class="kpi-value">$146.3B</div>
+      <div class="kpi-sub green"><span class="arrow-up"></span>3.6% CAGR to $199.55B (2034)</div>
+    </div>
+    <div class="kpi-card emerald">
+      <div class="kpi-icon emerald">📈</div>
+      <div class="kpi-label">Elite Net Margins</div>
+      <div class="kpi-value emerald">12.27%</div>
+      <div class="kpi-sub rose"><span class="arrow-warn"></span>Avg EBITDA compressed (6–15%)</div>
+    </div>
+  </div>
+
+  <!-- MID GRID -->
+  <div class="mid-grid">
+
+    <!-- Market Segmentation -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0099FF" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+        Market Segmentation
+      </div>
+      <div class="seg-item">
+        <div class="seg-header">
+          <span class="seg-name">Residential (R&amp;R)</span>
+          <span class="seg-share" style="color:#b5541c">47.03%</span>
+        </div>
+        <div class="seg-track"><div class="seg-fill" style="width:47%;background:#b5541c"></div></div>
+        <div class="seg-note">Largest segment. Driven by non-discretionary weather degradation and aging housing stock from early-2000s construction booms.</div>
+      </div>
+      <div class="seg-item">
+        <div class="seg-header">
+          <span class="seg-name">Commercial Flat &amp; Single-Ply</span>
+          <span class="seg-share" style="color:#4A7C9E">+41% sales</span>
+        </div>
+        <div class="seg-track"><div class="seg-fill" style="width:62%;background:#4A7C9E"></div></div>
+        <div class="seg-note">TPO membranes dominating thermal retrofit demand. Top operators reporting up to 41% sales increases in energy-efficient flat roofing.</div>
+      </div>
+      <div class="seg-item">
+        <div class="seg-header">
+          <span class="seg-name">Solar &amp; BIPV</span>
+          <span class="seg-share" style="color:#d4820a">$8.9B · 15% CAGR</span>
+        </div>
+        <div class="seg-track"><div class="seg-fill" style="width:28%;background:#d4820a"></div></div>
+        <div class="seg-note">Hyper-growth segment. 41% of contractors now involved in solar installs; solar averages 5% of total revenue for diversified operators.</div>
+      </div>
+      <div class="seg-item">
+        <div class="seg-header">
+          <span class="seg-name">Green &amp; Cool Roofs</span>
+          <span class="seg-share" style="color:#2e8b57">Emerging</span>
+        </div>
+        <div class="seg-track"><div class="seg-fill" style="width:18%;background:#2e8b57"></div></div>
+        <div class="seg-note">Cool roofs cut cooling costs 7–15% on average, up to 40% in arid climates. Mandated in urban heat island mitigation policies globally.</div>
+      </div>
+    </div>
+
+    <!-- Macro-Environmental Analysis -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0074D9" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Macro-Environmental Analysis
+      </div>
+      <div class="pestel-grid">
+        <div class="pestel-item">
+          <div class="pestel-label"><span>🏛</span> Political</div>
+          <div class="pestel-text">Regulatory bodies are signaling aggressive enforcement against tariff evasion in 2026 — offshore material sourcing now faces strict compliance costs, extensive auditing, and intense border scrutiny.</div>
+        </div>
+        <div class="pestel-item">
+          <div class="pestel-label"><span>📊</span> Economic</div>
+          <div class="pestel-text">While new-build construction is tethered to interest rates and credit liquidity, the roofing sector benefits from an overwhelming reliance on the repair, remodel, and restoration (R&amp;R) market — insulating it from macroeconomic cycles.</div>
+        </div>
+        <div class="pestel-item">
+          <div class="pestel-label"><span>👥</span> Social</div>
+          <div class="pestel-text">72% of contractors cite highly competitive pay and aggressive bonuses as their primary tool for retaining scarce talent — directly inflating operational labor costs by an average of 14% year-over-year.</div>
+        </div>
+        <div class="pestel-item">
+          <div class="pestel-label"><span>💻</span> Technological</div>
+          <div class="pestel-text">Best-in-class firms use AI routing to achieve sub-30 min "speed to lead" vs. the 12-hr industry average — directly lifting close rates and premium pricing power.</div>
+        </div>
+        <div class="pestel-item">
+          <div class="pestel-label"><span>🌿</span> Environmental</div>
+          <div class="pestel-text">The urban heat island effect has catalyzed the deployment of "cool roofs" — highly reflective surfaces that lower a building's cooling expenses by 7–15% on average, and up to 40% in extreme, arid climates.</div>
+        </div>
+        <div class="pestel-item">
+          <div class="pestel-label"><span>⚖️</span> Legal</div>
+          <div class="pestel-text">The EU's Carbon Border Adjustment Mechanism (CBAM) fundamentally alters global material sourcing by externalizing the price of carbon beyond EU borders — legally mandating that international suppliers decarbonize or face punitive border adjustments.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REGIONAL -->
+  <div class="region-grid">
+    <div class="region-card rose">
+      <div class="region-title"><div class="dot rose"></div> APAC — 55.7% Global Share</div>
+      <div class="region-item"><strong>China ($31.9B):</strong> State-sponsored green material mandates. Overcapacity driving regional export surge.</div>
+      <div class="region-item"><strong>India:</strong> 6.41% CAGR to $11.73B (2031). 30M affordable homes pipeline.</div>
+      <div class="region-item"><strong>SE Asia:</strong> Vietnam reaches top 8 globally for LEED certifications.</div>
+    </div>
+    <div class="region-card blue">
+      <div class="region-title"><div class="dot blue"></div> EMEA</div>
+      <div class="region-item"><strong>Europe:</strong> Strict CBAM tariffs. EPBD mandates renovating bottom 16% of worst buildings by 2030.</div>
+      <div class="region-item"><strong>GCC / Saudi Arabia:</strong> 5.06% CAGR. Hyper-growth driven by Vision 2030 &amp; $55B NEOM tenders.</div>
+      <div class="region-item"><strong>Africa:</strong> Leaping legacy tech for resilient, modular panels amidst rapid urbanization.</div>
+    </div>
+    <div class="region-card emerald">
+      <div class="region-title"><div class="dot emerald"></div> North America</div>
+      <div class="region-item"><strong>Canada ($4.2B → $5.33B by 2030):</strong> 4.1% CAGR fueled by a $400B+ CAD urban construction pipeline and the federal Green Buildings Strategy mandating net-zero, low-embodied-carbon systems.</div>
+      <div class="region-item"><strong>Mexico ($2.11B → $2.90B by 2033):</strong> 3.6% CAGR driven by nearshoring FDI flooding industrial logistics corridors. Flat commercial roofing is the dominant format, increasingly paired with rooftop solar integrations.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
